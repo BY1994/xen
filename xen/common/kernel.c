@@ -357,7 +357,7 @@ void add_taint(unsigned int flag)
 }
 
 extern const initcall_t __initcall_start[], __presmp_initcall_end[],
-    __initcall_end[];
+    __initcall_end[], __late_initcall_end[];
 
 void __init do_presmp_initcalls(void)
 {
@@ -370,6 +370,13 @@ void __init do_initcalls(void)
 {
     const initcall_t *call;
     for ( call = __presmp_initcall_end; call < __initcall_end; call++ )
+        (*call)();
+}
+
+void __init do_late_initcalls(void)
+{
+    const initcall_t *call;
+    for ( call = __initcall_end; call < __late_initcall_end; call++ )
         (*call)();
 }
 

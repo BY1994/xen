@@ -65,11 +65,14 @@ typedef void (*exitcall_t)(void);
     const static initcall_t __initcall_##fn __init_call("presmp") = fn
 #define __initcall(fn) \
     const static initcall_t __initcall_##fn __init_call("1") = fn
+#define __late_initcall(fn) \
+    const static initcall_t __initcall_##fn __init_call("late") = fn
 #define __exitcall(fn) \
     static exitcall_t __exitcall_##fn __exit_call = fn
 
 void do_presmp_initcalls(void);
 void do_initcalls(void);
+void do_late_initcalls(void);
 
 #endif /* __ASSEMBLY__ */
 

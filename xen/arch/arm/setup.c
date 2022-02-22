@@ -1048,6 +1048,8 @@ void __init start_xen(unsigned long boot_phys_offset,
     /* Hide UART from DOM0 if we're using it */
     serial_endboot();
 
+    do_late_initcalls();
+
     system_state = SYS_STATE_active;
 
     for_each_domain( d )

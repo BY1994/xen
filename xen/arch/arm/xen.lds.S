@@ -166,6 +166,8 @@ SECTIONS
        __presmp_initcall_end = .;
        *(.initcall1.init)
        __initcall_end = .;
+       *(.initcalllate.init)
+       __late_initcall_end = .;
 
        . = ALIGN(4);
        __alt_instructions = .;
