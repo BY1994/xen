@@ -34,6 +34,12 @@ void hwdom_shutdown(u8 reason)
 {
     switch ( reason )
     {
+    case SHUTDOWN_suspend:
+        printk("Hardware Dom%u suspended: suspending machine\n",
+               hardware_domain->domain_id);
+        machine_suspend();
+        break;
+
     case SHUTDOWN_poweroff:
         printk("Hardware Dom%u halted: halting machine\n",
                hardware_domain->domain_id);

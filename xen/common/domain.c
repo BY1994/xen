@@ -994,9 +994,6 @@ int domain_shutdown(struct domain *d, u8 reason)
         d->shutdown_code = reason;
     reason = d->shutdown_code;
 
-    if ( is_hardware_domain(d) )
-        hwdom_shutdown(reason);
-
     if ( d->is_shutting_down )
     {
         spin_unlock(&d->shutdown_lock);
@@ -1022,6 +1019,9 @@ int domain_shutdown(struct domain *d, u8 reason)
     __domain_finalise_shutdown(d);
 
     spin_unlock(&d->shutdown_lock);
+
+    if ( is_hardware_domain(d) )
+        hwdom_shutdown(reason);
 
     return 0;
 }

@@ -6,9 +6,10 @@
 /* opt_noreboot: If true, machine will need manual reset on error. */
 extern bool_t opt_noreboot;
 
-void noreturn hwdom_shutdown(u8 reason);
+void hwdom_shutdown(u8 reason);
 
 void noreturn machine_restart(unsigned int delay_millisecs);
 void noreturn machine_halt(void);
+void machine_suspend(void);
 
 #endif /* __XEN_SHUTDOWN_H__ */

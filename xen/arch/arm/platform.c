@@ -127,6 +127,12 @@ void platform_poweroff(void)
         platform->poweroff();
 }
 
+void platform_suspend(void)
+{
+    if ( platform && platform->suspend )
+        platform->suspend();
+}
+
 bool platform_smc(struct cpu_user_regs *regs)
 {
     if ( likely(platform && platform->smc) )

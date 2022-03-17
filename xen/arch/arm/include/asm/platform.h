@@ -25,6 +25,8 @@ struct platform_desc {
     void (*reset)(void);
     /* Platform power-off */
     void (*poweroff)(void);
+    /* Platform suspend */
+    void (*suspend)(void);
     /* Platform specific SMC handler */
     bool (*smc)(struct cpu_user_regs *regs);
     /*
@@ -58,6 +60,7 @@ int platform_cpu_up(int cpu);
 #endif
 void platform_reset(void);
 void platform_poweroff(void);
+void platform_suspend(void);
 bool platform_smc(struct cpu_user_regs *regs);
 bool platform_has_quirk(uint32_t quirk);
 bool platform_device_is_blacklisted(const struct dt_device_node *node);

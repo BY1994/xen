@@ -66,6 +66,11 @@ void machine_restart(unsigned int delay_millisecs)
     }
 }
 
+void machine_suspend(void)
+{
+    platform_suspend();
+}
+
 /*
  * Local variables:
  * mode: C
